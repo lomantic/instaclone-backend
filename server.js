@@ -1,8 +1,13 @@
+require("dotenv").config();
 import { ApolloServer } from "apollo-server";
-import { schema } from "./schema";
+import schema from "./schema";
 
 const server = new ApolloServer({
-    schema,
+  schema,
 });
 
-server.listen().then(() => console.log("Apollo Server open http://localhost:4000/"))
+const PORT = process.env.PORT;
+
+server
+  .listen(PORT)
+  .then(() => console.log(`Apollo Server open http://localhost:${PORT}/`));

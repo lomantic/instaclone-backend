@@ -128,3 +128,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+TEST_DUMMY/movies/movies.mutations.js
+TEST_DUMMY/movies/movies.queries.js
+TEST_DUMMY/movies/movies.typeDefs.js
