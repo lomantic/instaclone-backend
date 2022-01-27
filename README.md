@@ -6,7 +6,7 @@ instaclone backend Prisma GraphQL
 
 - [x] Create Account
 - [x] See Profile Settings
-- [] Login
+- [x] Login
 - [] Edit Profile
 - [] Follow user
 - [] UnFollow user
