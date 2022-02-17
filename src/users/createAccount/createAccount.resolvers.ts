@@ -1,7 +1,8 @@
 import client from "../../client";
-import bcrypt from "bcrypt";
+import * as bcrypt from "bcrypt";
+import { Resolvers } from "../../types";
 
-export default {
+const resolvers: Resolvers = {
   Mutation: {
     createAccount: async (
       _,
@@ -45,3 +46,5 @@ export default {
     },
   },
 };
+
+export default resolvers;

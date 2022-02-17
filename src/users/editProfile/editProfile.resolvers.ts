@@ -1,8 +1,9 @@
 import client from "../../client";
-import bcrypt from "bcrypt";
+import * as bcrypt from "bcrypt";
+import { Resolvers } from "../../types";
 import { protectResolver } from "../users.utils";
 
-export default {
+const resolvers: Resolvers = {
   Mutation: {
     //This is called currying ES6 function returning another function
     editProfile: protectResolver(
@@ -42,3 +43,5 @@ export default {
     ),
   },
 };
+
+export default resolvers;
