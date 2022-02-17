@@ -22,7 +22,7 @@ export default {
           },
         });
         if (existingUser) {
-          throw new Error("This username/password is occupied");
+          throw new Error("This username/email is occupied");
         }
 
         // hash pwd
