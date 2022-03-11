@@ -1,4 +1,3 @@
-import client from "../../client";
 import * as bcrypt from "bcrypt";
 import { Resolvers } from "../../types";
 
@@ -6,7 +5,8 @@ const resolvers: Resolvers = {
   Mutation: {
     createAccount: async (
       _,
-      { firstName, lastName, username, email, password }
+      { firstName, lastName, username, email, password },
+      { client }
     ) => {
       // check if username or email is unique on DB
       try {
@@ -31,7 +31,7 @@ const resolvers: Resolvers = {
         //console.log(uglyPassword);
         // save and return user
         // we use the browser's waiting property so that we do not have to use await in return
-        return client.user.create({
+        await client.user.create({
           data: {
             username,
             email,
@@ -40,8 +40,14 @@ const resolvers: Resolvers = {
             password: uglyPassword,
           },
         });
+        return {
+          ok: true,
+        };
       } catch (e) {
-        return e;
+        return {
+          ok: false,
+          error: "Can't create account",
+        };
       }
     },
   },

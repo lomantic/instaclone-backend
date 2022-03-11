@@ -1,4 +1,5 @@
-import client from "../../client";
+import { createWriteStream } from "fs";
+
 import * as bcrypt from "bcrypt";
 import { Resolvers } from "../../types";
 import { protectResolver } from "../users.utils";
@@ -9,9 +10,30 @@ const resolvers: Resolvers = {
     editProfile: protectResolver(
       async (
         _,
-        { firstName, lastName, username, email, password: newPassword },
-        { loggedInUser }
+        {
+          firstName,
+          lastName,
+          username,
+          email,
+          password: newPassword,
+          bio,
+          avatar,
+        },
+        { loggedInUser, client }
       ) => {
+        let avatarUrl = null;
+        if (avatar) {
+          const { filename, createReadStream } = await avatar;
+          const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
+          const readStream = createReadStream();
+          //current working directory cwd //no need when using clouds AWS
+          const writeStream = createWriteStream(
+            process.cwd() + "/uploads/" + newFilename
+          );
+          readStream.pipe(writeStream);
+          avatarUrl = `http://localhost:4000/static/${newFilename}`;
+        }
+
         let uglyPassword = null;
         if (newPassword) {
           uglyPassword = await bcrypt.hash(newPassword, 10);
@@ -25,8 +47,10 @@ const resolvers: Resolvers = {
             lastName,
             username,
             email,
+            bio,
             //if uglyPassword is true then add {password: uglyPassword} ES6
             ...(uglyPassword && { password: uglyPassword }),
+            ...(avatarUrl && { avatar: avatarUrl }),
           },
         });
         if (updatedUser.id) {
