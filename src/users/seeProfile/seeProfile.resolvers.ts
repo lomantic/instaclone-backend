@@ -3,7 +3,7 @@ import { protectResolver } from "../users.utils";
 
 const resolvers: Resolvers = {
   Query: {
-    seeProfile: protectResolver((_, { username }, { client }) =>
+    seeProfile: protectResolver(async (_, { username }, { client }) =>
       client.user.findUnique({
         where: {
           username,
