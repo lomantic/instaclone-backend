@@ -10,7 +10,7 @@ const resolvers: Resolvers = {
           const hashtags = caption.match(/#[\w]/g);
           //create or get hashtags
         }
-        await client.photo.create({
+        client.photo.create({
           data: {
             file,
             caption,
