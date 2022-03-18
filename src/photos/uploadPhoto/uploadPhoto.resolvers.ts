@@ -5,28 +5,30 @@ const resolvers: Resolvers = {
   Mutation: {
     uploadPhoto: protectResolver(
       async (_, { file, caption }, { loggedInUser, client }) => {
+        let hashtagsObjs = null;
         if (caption) {
           //parse caption
-          const hashtags = caption.match(/#[\w]/g);
+          const hashtags = caption.match(/#[\w]+/g);
+          hashtagsObjs = hashtags.map((hashtag) => ({
+            where: { hashtag },
+            create: { hashtag },
+          }));
           //create or get hashtags
         }
-        await client.photo.create({
+        return await client.photo.create({
           data: {
-            user,
+            user: {
+              connect: {
+                id: loggedInUser.id,
+              },
+            },
             file,
             caption,
-            hashtags: {
-              connectOrCreate: [
-                {
-                  where: {
-                    hashtag: "#food",
-                  },
-                  create: {
-                    hashtag: "#food",
-                  },
-                },
-              ],
-            },
+            ...(hashtagsObjs.length > 0 && {
+              hashtags: {
+                connectOrCreate: hashtagsObjs,
+              },
+            }),
           },
         });
         //save the photo with parsed hashtags into
