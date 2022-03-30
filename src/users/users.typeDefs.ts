@@ -10,6 +10,7 @@ export default gql`
     createdAt: String!
     updatedAt: String!
     bio: String
+    photos: [Photo]
     avatar: String
     following: [User]
     followers: [User]

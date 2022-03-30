@@ -18,11 +18,11 @@ instaclone backend Prisma GraphQL
 
 ## photos:
 
-- [] Upload Photo (Parse #)
-- [] See photo
-- [] See Hashtag
-- [] Search photos
-- [] Edit Photo
+- [x] Upload Photo (Parse #)
+- [x] See photo
+- [x] See Hashtag
+- [x] Search photos
+- [x] Edit Photo
 - [] Like/UnLike Photo
 - [] See Photo Likes
 - [] See Feed
