@@ -1,3 +1,4 @@
+import client from "../client";
 import { Resolvers } from "../types";
 
 const resolvers: Resolvers = {
@@ -15,6 +16,10 @@ const resolvers: Resolvers = {
             },
           },
         },
+      }),
+    likes: ({ id }) =>
+      client.like.count({
+        where: { photoId: id },
       }),
   },
 };
