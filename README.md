@@ -23,12 +23,14 @@ instaclone backend Prisma GraphQL
 - [x] See Hashtag
 - [x] Search photos
 - [x] Edit Photo
-- [] Like/UnLike Photo
-- [] See Photo Likes
-- [] See Feed
+- [x] Like/UnLike Photo
+- [x] See Photo Likes
+- [x] See Feed
+- [x] Comment photo
+- [x] Is Mine (Delete photo)
 
 ## Comments
 
-- [] Comment on Photo
+- [x] Comment on Photo
 - [] Edit Comment
-- [] Delete Comment
+- [x] Is Mine (Delete Comment)

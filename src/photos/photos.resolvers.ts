@@ -21,6 +21,16 @@ const resolvers: Resolvers = {
       client.like.count({
         where: { photoId: id },
       }),
+    comments: ({ id }) =>
+      client.comment.count({
+        where: { photoId: id },
+      }),
+    isMine: ({ userId }, _, { loggedInUser }) => {
+      if (!loggedInUser) {
+        return false;
+      }
+      return userId === loggedInUser.id;
+    },
   },
 };
 
