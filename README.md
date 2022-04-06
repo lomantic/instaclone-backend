@@ -28,9 +28,11 @@ instaclone backend Prisma GraphQL
 - [x] See Feed
 - [x] Comment photo
 - [x] Is Mine (Delete photo)
+- [x] Delete photo
 
 ## Comments
 
+- [x] Delete comment
 - [x] Comment on Photo
 - [] Edit Comment
 - [x] Is Mine (Delete Comment)
