@@ -34,5 +34,22 @@ instaclone backend Prisma GraphQL
 
 - [x] Delete comment
 - [x] Comment on Photo
-- [] Edit Comment
+- [x] Edit Comment
 - [x] Is Mine (Delete Comment)
+
+## Refactor
+
+- [x] Mutation Responses
+
+## Extras
+
+- [x] S3 Image Upload
+
+## DMs
+
+- [x] Create Room
+- [x] See Room
+- [x] Send Message
+- [x] Computed Fields
+- [] Read Message
+- [] Realtime Messages

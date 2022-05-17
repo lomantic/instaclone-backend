@@ -1,4 +1,3 @@
-import client from "../../client";
 import { Resolvers } from "../../types";
 import { protectResolver } from "../../users/users.utils";
 const resolvers: Resolvers = {

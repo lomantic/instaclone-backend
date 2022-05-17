@@ -30,10 +30,15 @@ export const protectResolver =
   (resolver: Resolver) =>
   (root: any, args: any, context: Context, info: any) => {
     if (!context.loggedInUser) {
-      return {
-        ok: false,
-        error: "You need to login ",
-      };
+      const query = info.operation.operation === "query";
+      if (query) {
+        return null;
+      } else {
+        return {
+          ok: false,
+          error: "You need to login ",
+        };
+      }
     }
     return resolver(root, args, context, info);
   };
