@@ -51,5 +51,5 @@ instaclone backend Prisma GraphQL
 - [x] See Room
 - [x] Send Message
 - [x] Computed Fields
-- [] Read Message
-- [] Realtime Messages
+- [x] Read Message
+- [x] Realtime Messages

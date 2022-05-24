@@ -1,8 +1,7 @@
-import client from "../client";
 import { Resolvers } from "../types";
 const resolvers: Resolvers = {
   Room: {
-    users: ({ id }) =>
+    users: ({ id }, _, { client }) =>
       client.room
         .findUnique({
           where: {
@@ -10,13 +9,13 @@ const resolvers: Resolvers = {
           },
         })
         .users(),
-    messages: ({ id }) =>
+    messages: ({ id }, _, { client }) =>
       client.message.findMany({
         where: {
           roomId: id,
         },
       }),
-    unReadTotal: ({ id }, _, { loggedInUser }) => {
+    unReadTotal: ({ id }, _, { loggedInUser, client }) => {
       if (!loggedInUser) {
         return 0;
       }
@@ -32,6 +31,10 @@ const resolvers: Resolvers = {
         },
       });
     },
+  },
+  Message: {
+    user: ({ id }, _, { client }) =>
+      client.message.findUnique({ where: { id } }).user(),
   },
 };
 export default resolvers;
